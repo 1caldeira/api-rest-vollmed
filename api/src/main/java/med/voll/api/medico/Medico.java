@@ -18,17 +18,19 @@ public class Medico {
     private Long id;
     private String nome;
     private String email;
+    private String telefone;
     private String crm;
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
     @Embedded
     private Endereco endereco;
 
-    public Medico(DadosCadastroMedico data) {
-        this.crm = data.crm();
-        this.email = data.email();
-        this.nome = data.nome();
-        this.endereco = new Endereco(data.endereco());
-        this.especialidade = data.especialidade();
+    public Medico(DadosCadastroMedico dados) {
+        this.crm = dados.crm();
+        this.email = dados.email();
+        this.nome = dados.nome();
+        this.endereco = new Endereco(dados.endereco());
+        this.especialidade = dados.especialidade();
+        this.telefone = dados.telefone();
     }
 }
