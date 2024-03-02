@@ -77,6 +77,17 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>6.5.5</version>
+				<configuration>
+					<url>jdbc:mysql://localhost:3306/vollmed_api</url>
+					<user>root</user>
+					<password>root</password>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
