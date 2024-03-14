@@ -28,6 +28,7 @@ public class MedicoController {
     }
     @GetMapping
     public ResponseEntity<Page<MedicoDTO>> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
+
         var page = repository.findAllByAtivoTrue(paginacao).map(MedicoDTO::new);
         return ResponseEntity.ok(page);
     }
