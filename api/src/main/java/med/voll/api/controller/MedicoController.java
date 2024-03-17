@@ -17,12 +17,12 @@ public class MedicoController {
     @Autowired
     private MedicoRepository repository;
 
-    @PostMapping("/cadastro")
+    @PostMapping("")
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder){
         var medico = new Medico(dados);
         repository.save(medico);
-        var uri = uriBuilder.path("/medicos/cadastro/{id}").buildAndExpand(medico.getId()).toUri();
+        var uri = uriBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoMedico(medico));
 
     }
