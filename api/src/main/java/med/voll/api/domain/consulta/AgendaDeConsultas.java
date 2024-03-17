@@ -4,6 +4,7 @@ import jakarta.validation.ValidationException;
 import med.voll.api.domain.medico.Medico;
 import med.voll.api.domain.medico.MedicoRepository;
 import med.voll.api.domain.paciente.PacienteRepository;
+import med.voll.api.infra.exception.ValidacaoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,7 @@ public class AgendaDeConsultas {
 
             var medico = escolherMedico(dados);
             var paciente = pacienteRepository.getReferenceById(dados.idPaciente());
-            var consulta = new Consulta(null, medico, paciente, dados.data());
+            var consulta = new Consulta(null, medico, paciente, dados.data(), null);
             consultaRepository.save(consulta);
         }
 
@@ -38,5 +39,14 @@ public class AgendaDeConsultas {
             }
 
             return medicoRepository.escolherMedicoAleatorioLivreNaData(dados.especialidade(),dados.data());
+    }
+
+    public void cancelarConsulta(DadosCancelamentoConsulta dados) throws ValidacaoException {
+
+            if(!consultaRepository.existsById(dados.id())){
+                throw new ValidacaoException("Id da consulta informado não existe!");
+        }
+                var consulta = consultaRepository.getReferenceById(dados.id());
+                consulta.cancelar(dados.motivoCancelamento());
     }
 }
