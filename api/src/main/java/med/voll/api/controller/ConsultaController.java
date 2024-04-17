@@ -24,7 +24,7 @@ public class ConsultaController {
         return ResponseEntity.ok(dto);
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     @Transactional
     public ResponseEntity deletar(@RequestBody @Valid DadosCancelamentoConsulta dados){
         try {

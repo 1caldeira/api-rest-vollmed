@@ -10,7 +10,9 @@ public record DadosCancelamentoConsulta(
         @NotNull
         Long id,
         @NotBlank
-        String motivoCancelamento
+        String motivoCancelamento,
+        @NotNull
+        LocalDateTime data
 
 ) {
 }
