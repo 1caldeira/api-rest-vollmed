@@ -19,8 +19,5 @@ public class ValidadorCancelamentoAntecedencia implements ValidadorCancelamentoD
         if(diferencaEmHoras < 24){
             throw new ValidacaoException("Cancelamento deve ser efetuado com antecedência mínima de 24 horas.");
         }
-        if(agora.isAfter(dataConsulta)){
-            throw new ValidacaoException("Não é possível cancelar uma consulta que já ocorreu.");
-        }
     }
 }
