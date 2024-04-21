@@ -1,5 +1,6 @@
 package med.voll.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import med.voll.api.domain.consulta.AgendaDeConsultas;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("consultas")
+@SecurityRequirement(name = "bearer-key")
 public class ConsultaController {
     @Autowired
     private AgendaDeConsultas agenda;
@@ -26,7 +28,7 @@ public class ConsultaController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity deletar(@RequestBody @Valid DadosCancelamentoConsulta dados){
+    public ResponseEntity cancelar(@RequestBody @Valid DadosCancelamentoConsulta dados){
         try {
             agenda.cancelarConsulta(dados);
         } catch (ValidacaoException e) {

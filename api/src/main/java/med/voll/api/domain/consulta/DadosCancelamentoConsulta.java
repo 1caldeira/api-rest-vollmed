@@ -11,8 +11,6 @@ public record DadosCancelamentoConsulta(
         Long id,
         @NotBlank
         String motivoCancelamento,
-        @NotNull
         LocalDateTime data
-
 ) {
 }

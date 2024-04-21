@@ -58,7 +58,8 @@ public class AgendaDeConsultas {
                 throw new ValidacaoException("Id da consulta informado não existe!");
         }
                 var consulta = consultaRepository.getReferenceById(dados.id());
-                validadoresCancelamento.forEach(v -> v.validar(dados));
+                DadosCancelamentoConsulta cancelar = new DadosCancelamentoConsulta(dados.id(),dados.motivoCancelamento(),consulta.getData());
+                validadoresCancelamento.forEach(v -> v.validar(cancelar));
                 consulta.cancelar(dados.motivoCancelamento());
     }
 }
