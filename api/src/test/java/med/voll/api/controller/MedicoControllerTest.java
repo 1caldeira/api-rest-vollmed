@@ -25,19 +25,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureMockMvc
 @AutoConfigureJsonTesters
 public class MedicoControllerTest {
-
     @Autowired
     private MockMvc mvc;
-
     @Autowired
     private JacksonTester<DadosCadastroMedico> dadosCadastroMedicoJson;
-
     @Autowired
     private JacksonTester<DadosDetalhamentoMedico> dadosDetalhamentoMedicoJson;
-
     @MockBean
     private MedicoRepository repository;
-
     @Test
     @DisplayName("Deveria devolver codigo http 400 quando informacoes estao invalidas")
     @WithMockUser
@@ -49,7 +44,6 @@ public class MedicoControllerTest {
         assertThat(response.getStatus())
                 .isEqualTo(HttpStatus.BAD_REQUEST.value());
     }
-
     @Test
     @DisplayName("Deveria devolver codigo http 200 quando informacoes estao validas")
     @WithMockUser
